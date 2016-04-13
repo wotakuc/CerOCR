@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.best.android.cerocr.CapturePreview
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_capture_surfaceView"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:text="New Text"
+        android:id="@+id/activity_capture_tvCode"
+        android:layout_alignParentBottom="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_capture_tvTop"
+        android:layout_above="@+id/activity_capture_tvCode" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_capture_tvRight"
+        android:layout_toRightOf="@+id/activity_capture_tvCode"
+        android:layout_below="@+id/activity_capture_tvTop"
+        android:alpha="50" />
+</RelativeLayout>
