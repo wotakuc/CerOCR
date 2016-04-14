@@ -9,19 +9,21 @@
         android:id="@+id/activity_capture_surfaceView"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/activity_capture_tvCode"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
-
     <RelativeLayout
         android:layout_width="428dp"
         android:layout_height="270dp"
         android:id="@+id/activity_capture_tvCenter"
         android:background="@mipmap/capback"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/testImageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -46,7 +48,9 @@
         android:layout_toLeftOf="@+id/activity_capture_tvCenter"
         android:background="#b4000000"
         android:layout_below="@+id/activity_capture_tvTop"
-        android:layout_above="@+id/activity_capture_tvBottom"></RelativeLayout>
+        android:layout_above="@+id/activity_capture_tvBottom">
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -55,5 +59,16 @@
         android:layout_above="@+id/activity_capture_tvBottom"
         android:layout_below="@+id/activity_capture_tvTop"
         android:layout_toRightOf="@+id/activity_capture_tvCenter"
-        android:background="#b4000000"></RelativeLayout>
+        android:background="#b4000000">
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_capture_btnPic"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:src="@mipmap/camera"
+            android:background="@android:color/transparent"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 </RelativeLayout>

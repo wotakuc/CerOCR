@@ -1,7 +1,10 @@
 package com.best.android.cerocr;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -18,9 +21,10 @@ public class CapturePreview extends SurfaceView implements SurfaceHolder.Callbac
     private static final String tag = "CapturePreview";
 
     Camera mCamera;
-    Camera.Size previewSize;
+//    Camera.Size previewSize;
     SurfaceHolder mHolder;
     AutoFocusManager focusManager;
+
 
     static final int MIN_PREVIEW_PIXELS = 480 * 320;
     static final int MAX_PREVIEW_PIXELS = 1920 * 1080;
@@ -60,7 +64,14 @@ public class CapturePreview extends SurfaceView implements SurfaceHolder.Callbac
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         if (mCamera != null) {
-            previewSize = findBestSize(mCamera.getParameters().getSupportedPreviewSizes());
+            Camera.Parameters parameters = mCamera.getParameters();
+            Camera.Size previewSize = findBestSize(parameters.getSupportedPreviewSizes());
+            parameters.setPreviewSize(previewSize.width, previewSize.height);
+            Camera.Size pictureSize = findBestSize(parameters.getSupportedPictureSizes());
+            parameters.setPictureSize(pictureSize.width, pictureSize.height);
+            parameters.setPictureFormat(ImageFormat.JPEG);
+            mCamera.setParameters(parameters);
+
             requestLayout();
 
             try {
@@ -118,4 +129,13 @@ public class CapturePreview extends SurfaceView implements SurfaceHolder.Callbac
         }
         return bestSize;
     }
+
+    public void takeAndOcrPic(Camera.PictureCallback callback){
+        if(mCamera!=null){
+            mCamera.takePicture(null,null, callback);
+        }
+    }
+
+    public Camera getCamera(){return mCamera;}
+
 }
