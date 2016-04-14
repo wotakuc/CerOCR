@@ -26,6 +26,4 @@ dependencies {
     compile 'com.android.support:support-annotations:23.3.0'
 //    https://github.com/rmtheis/tess-two
     compile 'com.rmtheis:tess-two:5.4.1'
-//    https://github.com/wasabeef/Blurry
-    compile 'jp.wasabeef:blurry:2.0.0'
 }

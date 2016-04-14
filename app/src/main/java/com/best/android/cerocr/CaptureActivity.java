@@ -6,12 +6,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-import jp.wasabeef.blurry.Blurry;
 
 public class CaptureActivity extends Activity {
     CapturePreview surfaceView;
-    RelativeLayout tvTop;
-    RelativeLayout tvRight;
+    RelativeLayout tvCenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,20 +22,12 @@ public class CaptureActivity extends Activity {
 
         setContentView(R.layout.activity_capture);
         surfaceView = (CapturePreview)findViewById(R.id.activity_capture_surfaceView);
-        tvTop = (RelativeLayout)findViewById(R.id.activity_capture_tvTop);
-        tvRight = (RelativeLayout)findViewById(R.id.activity_capture_tvRight);
+        tvCenter = (RelativeLayout)findViewById(R.id.activity_capture_tvCenter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-//        blurry();
-    }
-
-    public void blurry(){
-//        Blurry.with(CaptureActivity.this).radius(25).sampling(8).onto(tvTop);
-//        Blurry.with(CaptureActivity.this).radius(25).sampling(8).onto(tvRight);
     }
 
 }

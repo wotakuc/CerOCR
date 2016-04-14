@@ -69,7 +69,7 @@ public class CapturePreview extends SurfaceView implements SurfaceHolder.Callbac
                 e.printStackTrace();
             }
 
-            mCamera.setDisplayOrientation(90);
+//            mCamera.setDisplayOrientation(90);
             mCamera.startPreview();
             focusManager.start();
         }
