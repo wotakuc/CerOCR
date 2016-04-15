@@ -6,13 +6,13 @@ android:
   components:
   #- platform-tools
   #- tools
-  - build-tools-21.1.1
-  - android-21
+  - build-tools-23.0.3
+  - android-23
 
   # Additional components
   #- extra-google-m2repository
-  #- extra-android-m2repository
-  #- extra-android-support
+  - extra-android-m2repository
+  - extra-android-support
 
 cache:
   directories:
@@ -22,5 +22,4 @@ cache:
     - $HOME/.gradle/wrapper
 
 script:
-  - gradle build
-  - ./gradlew assemble
+  - gradle assemble
