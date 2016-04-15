@@ -1,29 +1,26 @@
 language: android
-sudo: false
+sudo: true
 jdk: oraclejdk7
 
 android:
   components:
-  - platform-tools
-  - tools
-  - build-tools-23.0.3
-  - android-23
+  #- platform-tools
+  #- tools
+  - build-tools-21.1.1
+  - android-21
 
   # Additional components
-  - extra-google-m2repository
-  - extra-android-m2repository
-  - extra-android-support
-
-before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  #- extra-google-m2repository
+  #- extra-android-m2repository
+  #- extra-android-support
 
 cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/caches/jars-1
     - $HOME/.gradle/daemon
-    - $HOME/.gradle/native
     - $HOME/.gradle/wrapper
 
 script:
+  - gradle build
   - ./gradlew assemble
