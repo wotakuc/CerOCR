@@ -17,19 +17,17 @@ import java.util.List;
 /**
  * Created by bl02512 on 2016/4/13.
  */
-public class CapturePreview extends SurfaceView implements SurfaceHolder.Callback, Camera.AutoFocusCallback{
+public class CaptureSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Camera.AutoFocusCallback{
     private static final String tag = "CapturePreview";
 
     Camera mCamera;
-//    Camera.Size previewSize;
     SurfaceHolder mHolder;
     AutoFocusManager focusManager;
-
 
     static final int MIN_PREVIEW_PIXELS = 480 * 320;
     static final int MAX_PREVIEW_PIXELS = 1920 * 1080;
 
-    public CapturePreview(Context context, AttributeSet attrs) {
+    public CaptureSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mHolder = getHolder();
         mHolder.addCallback(this);
@@ -130,7 +128,7 @@ public class CapturePreview extends SurfaceView implements SurfaceHolder.Callbac
         return bestSize;
     }
 
-    public void takeAndOcrPic(Camera.PictureCallback callback){
+    public void takePic(Camera.PictureCallback callback){
         if(mCamera!=null){
             mCamera.takePicture(null,null, callback);
         }
