@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.best.android.cerocr.CapturePreview
+    <com.best.android.cerocr.CaptureSurfaceView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/activity_capture_surfaceView"
@@ -23,6 +23,22 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/testResult"
+            android:layout_margin="8dp"
+            android:layout_below="@id/testImageView"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:id="@+id/testTime"
+            android:layout_below="@id/testResult"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
     <RelativeLayout
