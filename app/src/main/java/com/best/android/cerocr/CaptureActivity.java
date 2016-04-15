@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,9 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.googlecode.tesseract.android.TessBaseAPI;
+
+import java.io.File;
 
 
 public class CaptureActivity extends Activity {
@@ -108,5 +110,14 @@ public class CaptureActivity extends Activity {
             return null;
         }
     }
+
+    void initOcrEngine(){
+        File storageRoot;
+        String languageCode;
+        String languageName;
+        int orcEngineMode = TessBaseAPI.OEM_TESSERACT_ONLY;
+
+    }
+
 
 }

@@ -83,3 +83,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /.idea
+/app/app.iml
+/app/app.iml
+/CerOCR.iml
