@@ -133,4 +133,7 @@ public class CaptureSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
     public Camera getCamera(){return mCamera;}
 
+    public AutoFocusManager getFocusManager() {
+        return focusManager;
+    }
 }
