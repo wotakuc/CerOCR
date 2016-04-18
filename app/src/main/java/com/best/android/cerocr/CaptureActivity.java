@@ -116,7 +116,7 @@ public class CaptureActivity extends Activity {
 
             //创建拍照图片
             BitmapFactory.Options opt = new BitmapFactory.Options();
-            opt.inPreferredConfig = Bitmap.Config.RGB_565;
+            opt.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bmp = BitmapFactory.decodeByteArray(data,0,data.length,opt);
             Log.d(tag,"bmp width:" + bmp.getWidth() + "  height:" + bmp.getHeight());
 
@@ -147,44 +147,44 @@ public class CaptureActivity extends Activity {
             Log.d(tag,"codeBmp width:" + codeBmp.getWidth() + "  height:" + codeBmp.getHeight());
 
             //灰度化
-            int width = codeBmp.getWidth();         //获取位图的宽
-            int height = codeBmp.getHeight();       //获取位图的高
-            int []pixels = new int[width * height]; //通过位图的大小创建像素点数组
-            codeBmp.getPixels(pixels, 0, width, 0, 0, width, height);
-            int alpha = 0xFF << 24;
-            for(int i = 0; i < height; i++)  {
-                for(int j = 0; j < width; j++) {
-                    int grey = pixels[width * i + j];
-
-                    int red = ((grey  & 0x00FF0000 ) >> 16);
-                    int green = ((grey & 0x0000FF00) >> 8);
-                    int blue = (grey & 0x000000FF);
-
-                    grey = (int)((float) red * 0.3 + (float)green * 0.59 + (float)blue * 0.11);
-
-//                    //去除部分噪点
-//                    if(grey>DIFFNUM)
-//                        grey = 255;
-
-                    grey = alpha | (grey << 16) | (grey << 8) | grey;
-
-                    pixels[width * i + j] = grey;
-                }
-            }
+//            int width = codeBmp.getWidth();         //获取位图的宽
+//            int height = codeBmp.getHeight();       //获取位图的高
+//            int []pixels = new int[width * height]; //通过位图的大小创建像素点数组
+//            codeBmp.getPixels(pixels, 0, width, 0, 0, width, height);
+//            int alpha = 0xFF << 24;
+//            for(int i = 0; i < height; i++)  {
+//                for(int j = 0; j < width; j++) {
+//                    int grey = pixels[width * i + j];
+//
+//                    int red = ((grey  & 0x00FF0000 ) >> 16);
+//                    int green = ((grey & 0x0000FF00) >> 8);
+//                    int blue = (grey & 0x000000FF);
+//
+//                    grey = (int)((float) red * 0.3 + (float)green * 0.59 + (float)blue * 0.11);
+//
+////                    //去除部分噪点
+////                    if(grey>DIFFNUM)
+////                        grey = 255;
+//
+//                    grey = alpha | (grey << 16) | (grey << 8) | grey;
+//
+//                    pixels[width * i + j] = grey;
+//                }
+//            }
             //必须要ARGB_8888才能用于OCR识别
-            Bitmap greyBmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            greyBmp.setPixels(pixels, 0, width, 0, 0, width, height);
+//            Bitmap greyBmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+//            greyBmp.setPixels(pixels, 0, width, 0, 0, width, height);
 
-            bmp.recycle();
-            bmp = null;
-            codeBmp.recycle();
-            codeBmp = null;
+//            bmp.recycle();
+//            bmp = null;
+//            codeBmp.recycle();
+//            codeBmp = null;
 
             //存下来图片来
             String path = FileUtil.getCacheDir(CaptureActivity.this)+ File.separator + "_" + UUID.randomUUID().toString() + ".jpg";
-            ImageUtil.saveBitmap(path, greyBmp, 100);
+            ImageUtil.saveBitmap(path, codeBmp, 100);
 
-            return greyBmp;
+            return codeBmp;
         }
 
         @Override
@@ -216,8 +216,8 @@ public class CaptureActivity extends Activity {
         // Initialize the OCR engine
         File storageDirectory = getStorageDirectory();
         if (storageDirectory != null) {
-            String languageCode = "eng";
-            String languageName = "English";
+            String languageCode = "custom";
+            String languageName = "Custom";
             int orcEngineMode = TessBaseAPI.OEM_TESSERACT_ONLY;
             baseApi = new TessBaseAPI();
             new OcrInitAsyncTask(this,baseApi,progressDialog,languageCode,languageName,orcEngineMode).execute(storageDirectory.toString());
@@ -230,7 +230,7 @@ public class CaptureActivity extends Activity {
             baseApi.setVariable("load_freq_dawg",TessBaseAPI.VAR_FALSE);
             baseApi.setPageSegMode(TessBaseAPI.PageSegMode.PSM_AUTO_OSD);
             baseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, "");
-            baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "0123456789x");
+            baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "0123456789X");
         }
         //可以开始识别了
         setButtonClickable(true);
