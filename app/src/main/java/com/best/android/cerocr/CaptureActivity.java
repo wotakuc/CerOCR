@@ -216,8 +216,8 @@ public class CaptureActivity extends Activity {
         // Initialize the OCR engine
         File storageDirectory = getStorageDirectory();
         if (storageDirectory != null) {
-            String languageCode = "custom";
-            String languageName = "Custom";
+            String languageCode = "eng";
+            String languageName = "English";
             int orcEngineMode = TessBaseAPI.OEM_TESSERACT_ONLY;
             baseApi = new TessBaseAPI();
             new OcrInitAsyncTask(this,baseApi,progressDialog,languageCode,languageName,orcEngineMode).execute(storageDirectory.toString());
@@ -297,6 +297,13 @@ public class CaptureActivity extends Activity {
         return null;
     }
 
+    @Override
+    protected void onDestroy() {
+        if (baseApi != null) {
+            baseApi.end();
+        }
+        super.onDestroy();
+    }
 }
 
 

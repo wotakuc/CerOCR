@@ -103,7 +103,7 @@ public class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
         }else {
             osdInstallSuccess = true;
         }
-
+//        boolean osdInstallSuccess = true;
         // Initialize the OCR engine
         if (baseApi.init(destinationDirBase + File.separator, languageCode, ocrEngineMode)) {
             return installSuccess && osdInstallSuccess;
